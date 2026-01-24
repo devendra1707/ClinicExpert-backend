@@ -1,0 +1,902 @@
+2026-01-24 17:05:07 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-01-24 17:05:07 [restartedMain] INFO  com.clinic.ClinicExpertsApplication - Starting ClinicExpertsApplication using Java 21.0.7 with PID 18328 (C:\Users\Administrator\Documents\Spring-boot\Clinic\ClinicExperts\target\classes started by Administrator in C:\Users\Administrator\Documents\Spring-boot\Clinic\ClinicExperts)
+2026-01-24 17:05:07 [restartedMain] DEBUG com.clinic.ClinicExpertsApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-01-24 17:05:07 [restartedMain] INFO  com.clinic.ClinicExpertsApplication - No active profile set, falling back to 1 default profile: "default"
+2026-01-24 17:05:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-01-24 17:05:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-01-24 17:05:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24 17:05:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 1 JPA repository interface.
+2026-01-24 17:05:10 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-01-24 17:05:10 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-01-24 17:05:10 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-01-24 17:05:10 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-01-24 17:05:10 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-01-24 17:05:10 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2285 ms
+2026-01-24 17:05:10 [restartedMain] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2026-01-24 17:05:10 [restartedMain] DEBUG com.clinic.Config.RequestFilter - Filter 'requestFilter' configured for use
+2026-01-24 17:05:11 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24 17:05:11 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-01-24 17:05:11 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-01-24 17:05:11 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24 17:05:11 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-24 17:05:11 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@50972bde
+2026-01-24 17:05:11 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-24 17:05:12 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24 17:05:12 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24 17:05:12 [restartedMain] WARN  o.s.aop.framework.CglibAopProxy - Unable to proxy interface-implementing method [public final void org.springframework.web.filter.OncePerRequestFilter.doFilter(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,jakarta.servlet.FilterChain) throws jakarta.servlet.ServletException,java.io.IOException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-01-24 17:05:12 [restartedMain] WARN  o.s.aop.framework.CglibAopProxy - Unable to proxy interface-implementing method [public final void org.springframework.web.filter.GenericFilterBean.init(jakarta.servlet.FilterConfig) throws jakarta.servlet.ServletException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-01-24 17:05:13 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2026-01-24 17:05:13 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24 17:05:14 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2026-01-24 17:05:14 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-01-24 17:05:14 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@75f0f01a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7811982f, org.springframework.security.web.context.SecurityContextHolderFilter@35293894, org.springframework.security.web.header.HeaderWriterFilter@1ecdfd21, org.springframework.web.filter.CorsFilter@e05a8ea, org.springframework.security.web.authentication.logout.LogoutFilter@1f142bcc, com.clinic.Config.RequestFilter@3b9561d2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@89d1ee3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b56dd3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6291d917, org.springframework.security.web.session.SessionManagementFilter@643dab35, org.springframework.security.web.access.ExceptionTranslationFilter@3bb63ab1, org.springframework.security.web.access.intercept.AuthorizationFilter@5e6be0e6]
+2026-01-24 17:05:14 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-01-24 17:05:14 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-01-24 17:05:14 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-01-24 17:05:14 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-01-24 17:05:14 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-01-24 17:05:14 [restartedMain] INFO  com.clinic.ClinicExpertsApplication - Started ClinicExpertsApplication in 7.376 seconds (process running for 7.736)
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2a737c92
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@19d5df1b
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.clinic.Controller.ClinicLogin#loginClinic(JwtRequest)
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - 📥 INCOMING REQUEST
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - URL: POST http://localhost:8080/api/auth/login
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Client IP: 0:0:0:0:0:0:0:1
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Headers: Authorization=None, Content-Type=application/json
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] STARTED: ClinicLogin.loginClinic
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Controller.ClinicLogin - Login request received for: string
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.createJwtToken
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Creating JWT Token
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_contact=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.clinic_id,
+        r1_1.role_name,
+        r1_1.role_description 
+    from
+        clinic_roles r1_0 
+    join
+        clinic_role r1_1 
+            on r1_1.role_name=r1_0.role_name 
+    where
+        r1_0.clinic_id=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.role_name,
+        c1_1.clinic_id,
+        c1_1.clinic_logo,
+        c1_1.clinic_address,
+        c1_1.clinic_city,
+        c1_1.clinic_closing_time,
+        c1_1.clinic_code,
+        c1_1.clinic_contact,
+        c1_1.clinic_email,
+        c1_1.clinic_name,
+        c1_1.clinic_opening_time,
+        c1_1.clinic_password,
+        c1_1.clinic_pin_code,
+        c1_1.clinic_state,
+        c1_1.clinic_status,
+        c1_1.clinic_subscription_plan,
+        c1_1.clinic_time_zone,
+        c1_1.create_by,
+        c1_1.create_at,
+        c1_1.reset_token,
+        c1_1.reset_token_expiry,
+        c1_1.update_at 
+    from
+        clinic_roles c1_0 
+    join
+        clinic_expert c1_1 
+            on c1_1.clinic_id=c1_0.clinic_id 
+    where
+        c1_0.role_name=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Clinic found by contact
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Clinic is active: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.loadUserByUsername
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [aprajapati8081@gmail.com]
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.loadUserByUsername
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 0 ms
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: User
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Authentication successful for: aprajapati8081@gmail.com
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Util.JwtUtil - ===Token Generate====
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Service.JwtService - Login successful for clinic: ClinicExpert
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.createJwtToken
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 450 ms
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: RootPostResponse
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] COMPLETED: ClinicLogin.loginClinic
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 450 ms
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: ResponseEntity
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - 📤 OUTGOING RESPONSE
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Response Type: ResponseEntity
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - Status: SUCCESS
+2026-01-24 17:05:22 [http-nio-8080-exec-1] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-01-24 17:05:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [RootPostResponse(response_identifier=ResponseIdentifier(clinic_id=fded569a-bcf0-40d5-ad8b-e0518f7027 (truncated)...]
+2026-01-24 17:05:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.clinic.Controller.ClinicLogin#loginClinic(JwtRequest)
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - 📥 INCOMING REQUEST
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - URL: POST http://localhost:8080/api/auth/login
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Client IP: 0:0:0:0:0:0:0:1
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Headers: Authorization=None, Content-Type=application/json
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] STARTED: ClinicLogin.loginClinic
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Controller.ClinicLogin - Login request received for: string
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.createJwtToken
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Creating JWT Token
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_contact=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.clinic_id,
+        r1_1.role_name,
+        r1_1.role_description 
+    from
+        clinic_roles r1_0 
+    join
+        clinic_role r1_1 
+            on r1_1.role_name=r1_0.role_name 
+    where
+        r1_0.clinic_id=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.role_name,
+        c1_1.clinic_id,
+        c1_1.clinic_logo,
+        c1_1.clinic_address,
+        c1_1.clinic_city,
+        c1_1.clinic_closing_time,
+        c1_1.clinic_code,
+        c1_1.clinic_contact,
+        c1_1.clinic_email,
+        c1_1.clinic_name,
+        c1_1.clinic_opening_time,
+        c1_1.clinic_password,
+        c1_1.clinic_pin_code,
+        c1_1.clinic_state,
+        c1_1.clinic_status,
+        c1_1.clinic_subscription_plan,
+        c1_1.clinic_time_zone,
+        c1_1.create_by,
+        c1_1.create_at,
+        c1_1.reset_token,
+        c1_1.reset_token_expiry,
+        c1_1.update_at 
+    from
+        clinic_roles c1_0 
+    join
+        clinic_expert c1_1 
+            on c1_1.clinic_id=c1_0.clinic_id 
+    where
+        c1_0.role_name=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Clinic found by contact
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Clinic is active: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.loadUserByUsername
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [aprajapati8081@gmail.com]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.loadUserByUsername
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 1 ms
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: User
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Authentication successful for: aprajapati8081@gmail.com
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Util.JwtUtil - ===Token Generate====
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Service.JwtService - Login successful for clinic: ClinicExpert
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.createJwtToken
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 51 ms
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: RootPostResponse
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] COMPLETED: ClinicLogin.loginClinic
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 51 ms
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: ResponseEntity
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - 📤 OUTGOING RESPONSE
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Response Type: ResponseEntity
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - Status: SUCCESS
+2026-01-24 17:07:40 [http-nio-8080-exec-3] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [RootPostResponse(response_identifier=ResponseIdentifier(clinic_id=fded569a-bcf0-40d5-ad8b-e0518f7027 (truncated)...]
+2026-01-24 17:07:40 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.clinic.Controller.ClinicLogin#loginClinic(JwtRequest)
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - 📥 INCOMING REQUEST
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - URL: POST http://localhost:8080/api/auth/login
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Client IP: 0:0:0:0:0:0:0:1
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Headers: Authorization=None, Content-Type=application/json
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] STARTED: ClinicLogin.loginClinic
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Controller.ClinicLogin - Login request received for: string
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.createJwtToken
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Creating JWT Token
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_contact=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.clinic_id,
+        r1_1.role_name,
+        r1_1.role_description 
+    from
+        clinic_roles r1_0 
+    join
+        clinic_role r1_1 
+            on r1_1.role_name=r1_0.role_name 
+    where
+        r1_0.clinic_id=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.role_name,
+        c1_1.clinic_id,
+        c1_1.clinic_logo,
+        c1_1.clinic_address,
+        c1_1.clinic_city,
+        c1_1.clinic_closing_time,
+        c1_1.clinic_code,
+        c1_1.clinic_contact,
+        c1_1.clinic_email,
+        c1_1.clinic_name,
+        c1_1.clinic_opening_time,
+        c1_1.clinic_password,
+        c1_1.clinic_pin_code,
+        c1_1.clinic_state,
+        c1_1.clinic_status,
+        c1_1.clinic_subscription_plan,
+        c1_1.clinic_time_zone,
+        c1_1.create_by,
+        c1_1.create_at,
+        c1_1.reset_token,
+        c1_1.reset_token_expiry,
+        c1_1.update_at 
+    from
+        clinic_roles c1_0 
+    join
+        clinic_expert c1_1 
+            on c1_1.clinic_id=c1_0.clinic_id 
+    where
+        c1_0.role_name=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Clinic found by contact
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Clinic is active: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.loadUserByUsername
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [aprajapati8081@gmail.com]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.loadUserByUsername
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 0 ms
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: User
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Authentication successful for: aprajapati8081@gmail.com
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Util.JwtUtil - ===Token Generate====
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Service.JwtService - Login successful for clinic: ClinicExpert
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.createJwtToken
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 57 ms
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: RootPostResponse
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] COMPLETED: ClinicLogin.loginClinic
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 57 ms
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: ResponseEntity
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - 📤 OUTGOING RESPONSE
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Response Type: ResponseEntity
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - Status: SUCCESS
+2026-01-24 17:07:41 [http-nio-8080-exec-4] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [RootPostResponse(response_identifier=ResponseIdentifier(clinic_id=fded569a-bcf0-40d5-ad8b-e0518f7027 (truncated)...]
+2026-01-24 17:07:41 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-01-24 17:11:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/health
+2026-01-24 17:11:09 [http-nio-8080-exec-6] DEBUG com.clinic.Config.RequestFilter - JWT Token does not begin with Bearer String for path: /actuator/health
+2026-01-24 17:11:09 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-01-24 17:11:09 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:15 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/health
+2026-01-24 17:11:15 [http-nio-8080-exec-7] DEBUG com.clinic.Config.RequestFilter - JWT Token does not begin with Bearer String for path: /actuator/health
+2026-01-24 17:11:15 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:15 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-01-24 17:11:15 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:16 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/health
+2026-01-24 17:11:16 [http-nio-8080-exec-8] DEBUG com.clinic.Config.RequestFilter - JWT Token does not begin with Bearer String for path: /actuator/health
+2026-01-24 17:11:16 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:16 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-01-24 17:11:16 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:43 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/metrics
+2026-01-24 17:11:43 [http-nio-8080-exec-9] DEBUG com.clinic.Config.RequestFilter - JWT Token does not begin with Bearer String for path: /actuator/metrics
+2026-01-24 17:11:43 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:43 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-01-24 17:11:43 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.clinic.Controller.ClinicLogin#loginClinic(JwtRequest)
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - 📥 INCOMING REQUEST
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - URL: POST http://localhost:8080/api/auth/login
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Client IP: 0:0:0:0:0:0:0:1
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Headers: Authorization=None, Content-Type=application/json
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] STARTED: ClinicLogin.loginClinic
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Controller.ClinicLogin - Login request received for: string
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.createJwtToken
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [JwtRequest(clinicEmail=string, clinicContact=8081489506, clinicPassword=Anil@8081)]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Creating JWT Token
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_contact=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        r1_0.clinic_id,
+        r1_1.role_name,
+        r1_1.role_description 
+    from
+        clinic_roles r1_0 
+    join
+        clinic_role r1_1 
+            on r1_1.role_name=r1_0.role_name 
+    where
+        r1_0.clinic_id=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.role_name,
+        c1_1.clinic_id,
+        c1_1.clinic_logo,
+        c1_1.clinic_address,
+        c1_1.clinic_city,
+        c1_1.clinic_closing_time,
+        c1_1.clinic_code,
+        c1_1.clinic_contact,
+        c1_1.clinic_email,
+        c1_1.clinic_name,
+        c1_1.clinic_opening_time,
+        c1_1.clinic_password,
+        c1_1.clinic_pin_code,
+        c1_1.clinic_state,
+        c1_1.clinic_status,
+        c1_1.clinic_subscription_plan,
+        c1_1.clinic_time_zone,
+        c1_1.create_by,
+        c1_1.create_at,
+        c1_1.reset_token,
+        c1_1.reset_token_expiry,
+        c1_1.update_at 
+    from
+        clinic_roles c1_0 
+    join
+        clinic_expert c1_1 
+            on c1_1.clinic_id=c1_0.clinic_id 
+    where
+        c1_0.role_name=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Clinic found by contact
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Clinic is active: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - ┌─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] STARTED: JwtService.loadUserByUsername
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Parameters: [aprajapati8081@gmail.com]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.loadUserByUsername
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 0 ms
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: User
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Authentication successful for: aprajapati8081@gmail.com
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.clinic_id,
+        c1_0.clinic_logo,
+        c1_0.clinic_address,
+        c1_0.clinic_city,
+        c1_0.clinic_closing_time,
+        c1_0.clinic_code,
+        c1_0.clinic_contact,
+        c1_0.clinic_email,
+        c1_0.clinic_name,
+        c1_0.clinic_opening_time,
+        c1_0.clinic_password,
+        c1_0.clinic_pin_code,
+        c1_0.clinic_state,
+        c1_0.clinic_status,
+        c1_0.clinic_subscription_plan,
+        c1_0.clinic_time_zone,
+        c1_0.create_by,
+        c1_0.create_at,
+        c1_0.reset_token,
+        c1_0.reset_token_expiry,
+        c1_0.update_at 
+    from
+        clinic_expert c1_0 
+    where
+        c1_0.clinic_email=?
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Clinic found: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Fetching roles for clinic: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Util.JwtUtil - ===Token Generate====
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Service.JwtService - Login successful for clinic: ClinicExpert
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [SERVICE] COMPLETED: JwtService.createJwtToken
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 67 ms
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: RootPostResponse
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ [CONTROLLER] COMPLETED: ClinicLogin.loginClinic
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ ✓ Execution Time: 67 ms
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - │ Return Type: ResponseEntity
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.PerformanceAspect - └─────────────────────────────────────────────────────────
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - 📤 OUTGOING RESPONSE
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Method: com.clinic.Controller.ClinicLogin.loginClinic
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Response Type: ResponseEntity
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - Status: SUCCESS
+2026-01-24 17:11:52 [http-nio-8080-exec-10] INFO  com.clinic.Aop.LoggingAspect - ═══════════════════════════════════════════════════════════
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [RootPostResponse(response_identifier=ResponseIdentifier(clinic_id=fded569a-bcf0-40d5-ad8b-e0518f7027 (truncated)...]
+2026-01-24 17:11:52 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-01-24 17:12:43 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/health/**
+2026-01-24 17:12:43 [http-nio-8080-exec-3] INFO  com.clinic.Util.JwtUtil - ===GetUserNameFromToken===
+2026-01-24 17:12:43 [http-nio-8080-exec-3] INFO  com.clinic.Util.JwtUtil - ==GetClaimsFromTokens===
+2026-01-24 17:12:43 [http-nio-8080-exec-3] INFO  com.clinic.Util.JwtUtil - ===GetClaimsFromToken===
+2026-01-24 17:12:43 [http-nio-8080-exec-3] ERROR com.clinic.Config.RequestFilter - JWT Token validation error: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-01-24 17:12:43 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:12:43 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+2026-01-24 17:12:43 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-01-24 17:13:19 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24 17:13:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-01-24 17:13:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
