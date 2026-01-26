@@ -2,6 +2,7 @@ package com.clinic.Model;
 
 
 import com.clinic.Enums.ClinicStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -11,6 +12,8 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -161,5 +164,10 @@ public class Clinic {
             inverseJoinColumns = @JoinColumn(name = "roleName", referencedColumnName = "role_name")
     )
     private Set<Roles> roles;
+
+
+    @OneToMany(mappedBy = "clinic", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Doctor> doctors = new ArrayList<>();
 
 }

@@ -1,13 +1,14 @@
 package com.clinic.Controller;
 
 
+import com.clinic.LookupResponse.RootPostResponse;
 import com.clinic.Model.Clinic;
+import com.clinic.Request.ClinicContactRequest;
 import com.clinic.Service.RegistrationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -20,5 +21,11 @@ public class ClinicRegistration {
     @PostMapping("/registration")
     public Clinic clinicRegistrationData(@RequestBody Clinic clinic){
         return registrationService.registerClinic(clinic);
+    }
+
+    @PostMapping("/getClinicInfo")
+    @PreAuthorize("hasRole('Admin')")
+    public RootPostResponse getClinicInformation(@RequestBody ClinicContactRequest clinicContact){
+        return registrationService.GetClinicInfo(clinicContact);
     }
 }

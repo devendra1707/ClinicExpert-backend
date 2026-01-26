@@ -28,4 +28,9 @@ public class Roles {
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore
     private Set<Clinic> clinics;
+
+
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
+    private Set<Doctor> doctors;
 }

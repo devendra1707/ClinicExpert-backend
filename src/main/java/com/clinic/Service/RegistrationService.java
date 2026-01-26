@@ -1,8 +1,10 @@
 package com.clinic.Service;
 
 
+import com.clinic.LookupResponse.*;
 import com.clinic.Model.Clinic;
 import com.clinic.Repository.ClinicExpertRepository;
+import com.clinic.Request.ClinicContactRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,36 @@ public class RegistrationService {
 
         log.info("Clinic registered successfully: {}", clinic.getClinicEmail());
         return clinicRepo.save(clinic);
+    }
+
+    public RootPostResponse GetClinicInfo(ClinicContactRequest request){
+        Clinic clinic = clinicRepo.findByClinicContact(request.getClinicContact());
+        ResponseData responseData = new ResponseData(
+                clinic.getClinicEmail(),
+                clinic.getClinicContact(),
+                clinic.getClinicStatus().toString(),
+                clinic.getClinicAddress(),
+                clinic.getClinicCity(),
+                clinic.getClinicState(),
+                clinic.getClinicPinCode(),
+                clinic.getClinicTimezone(),
+                clinic.getClinicOpeningTime(),
+                clinic.getClinicClosingTime(),
+                clinic.getClinicSubscriptionPlan(),
+                clinic.getClinicLogo()
+        );
+
+        ResponseIdentifier identifier = new ResponseIdentifier(
+                clinic.getClinicId(),
+                clinic.getClinicCode(),
+                clinic.getClinicName()
+        );
+
+        ResponseDatas responseDatas = new ResponseDatas(responseData);
+        ResponseStatus status = new ResponseStatus("200 OK", "Login successful.");
+
+        log.info("Login successful for clinic: {}", clinic.getClinicName());
+        return new RootPostResponse(identifier, responseDatas, status);
     }
 
 }
