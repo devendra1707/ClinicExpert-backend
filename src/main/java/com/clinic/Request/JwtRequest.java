@@ -9,6 +9,5 @@ import lombok.*;
 @AllArgsConstructor
 public class JwtRequest {
     private String clinicEmail;
-    private String clinicContact;
     private String clinicPassword;
 }

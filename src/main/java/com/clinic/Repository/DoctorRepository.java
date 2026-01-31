@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
 
     Doctor findByDoctorContact(String doctorContact);
+    Doctor findByDoctorEmailOrDoctorContact(String email, String contact);
 }

@@ -14,7 +14,7 @@ import java.util.UUID;
 @Table(name = "clinic_patient",
         indexes = {
                 @Index(name = "idx_patient_contact", columnList = "contact_number"),
-                @Index(name = "idx_patient_email", columnList = "email")
+                @Index(name = "idx_patient_email", columnList = "patient_email")
         })
 @Getter
 @Setter
@@ -30,11 +30,13 @@ public class Patient {
     private UUID patientId;
 
     // ===== Clinic Mapping =====
+    @Hidden
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id", nullable = false)
     private Clinic clinic;
 
     // ===== Doctor Mapping (optional) =====
+    @Hidden
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
@@ -56,8 +58,11 @@ public class Patient {
     @Column(name = "contact_number", nullable = false)
     private String contactNumber;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "patient_email")
+    private String patientEmail;
+
+    @Column(name = "patient_password")
+    private String patientPassword;
 
     @Column(name = "address")
     private String address;
@@ -93,6 +98,7 @@ public class Patient {
     private ClinicStatus patientStatus;
 
     // ===== Role =====
+    @Hidden
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "patient_roles",
@@ -102,9 +108,11 @@ public class Patient {
     private Set<Roles> roles;
 
     // ===== Audit =====
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Hidden
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 

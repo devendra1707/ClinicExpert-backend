@@ -18,7 +18,6 @@ public class PatientController {
     private final PatientService patientService;
 
     @PostMapping("/clinic/{clinicId}/patients")
-    @PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
     public ResponseEntity<Patient> savePatient(@PathVariable UUID clinicId, @RequestBody Patient patient) {
         Patient savedPatient = patientService.savePatient(clinicId,patient);
         return ResponseEntity.ok(savedPatient);
@@ -26,7 +25,7 @@ public class PatientController {
 
     // ===== Get All Patients =====
     @GetMapping("/all")
-    @PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN') or hasRole('PATIENT')")
     public ResponseEntity<List<Patient>> getAllPatients() {
         List<Patient> patients = patientService.getAllPatients();
         return ResponseEntity.ok(patients);
@@ -34,7 +33,7 @@ public class PatientController {
 
     // ===== Get Patient by ID (optional) =====
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN') or hasRole('PATIENT')")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") UUID id) {
         Patient patient = patientService.getPatientById(id);
         return ResponseEntity.ok(patient);

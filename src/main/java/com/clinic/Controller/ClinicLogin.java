@@ -18,7 +18,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 @Tag(name = "Authentication", description = "Authentication and Password Management APIs")
-@CrossOrigin(origins = "*")
 public class ClinicLogin {
 
     private final JwtService jwtService;
@@ -31,17 +30,18 @@ public class ClinicLogin {
     @Operation(summary = "Clinic Login", description = "Login with email/contact and password to get JWT token")
     public ResponseEntity<RootPostResponse> loginClinic(@Valid @RequestBody JwtRequest jwtRequest) {
         log.info("Login request received for: {}", jwtRequest.getClinicEmail());
+        System.out.println("This is the Login  : "+jwtRequest.getClinicEmail());
         RootPostResponse response = jwtService.createJwtToken(jwtRequest);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/forget-password")
-    @Operation(summary = "Forget Password", description = "Request password reset link via email")
-    public ResponseEntity<RootPostResponse> forgetPassword(@Valid @RequestBody ForgetPasswordRequest request) {
-        log.info("Forget password request received");
-        RootPostResponse response = jwtService.forgetPassword(request);
-        return ResponseEntity.ok(response);
-    }
+//    @PostMapping("/forget-password")
+//    @Operation(summary = "Forget Password", description = "Request password reset link via email")
+//    public ResponseEntity<RootPostResponse> forgetPassword(@Valid @RequestBody ForgetPasswordRequest request) {
+//        log.info("Forget password request received");
+//        RootPostResponse response = jwtService.forgetPassword(request);
+//        return ResponseEntity.ok(response);
+//    }
 
     @PostMapping("/reset-password")
     @Operation(summary = "Reset Password", description = "Reset password using reset token")

@@ -9,7 +9,8 @@ import java.util.UUID;
 @Repository
 public interface ClinicExpertRepository extends JpaRepository<Clinic, UUID> {
 
-    Clinic findByClinicEmail(String email);
-    Clinic findByClinicContact(String contact);
+    Clinic findByClinicEmailOrClinicContact(String email, String contact);
+    Clinic findByClinicEmail(String clinicEmail);
+    Clinic findByClinicContact(String clinicContact);
     Clinic findByResetToken(String resetToken);
 }

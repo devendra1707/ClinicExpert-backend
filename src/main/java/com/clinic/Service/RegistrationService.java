@@ -3,24 +3,28 @@ package com.clinic.Service;
 
 import com.clinic.LookupResponse.*;
 import com.clinic.Model.Clinic;
+import com.clinic.Model.Roles;
 import com.clinic.Repository.ClinicExpertRepository;
+import com.clinic.Repository.RoleRepository;
 import com.clinic.Request.ClinicContactRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class RegistrationService {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final ClinicExpertRepository clinicRepo;
+    private final RoleRepository roleRepository;
 
-    public RegistrationService(BCryptPasswordEncoder passwordEncoder, ClinicExpertRepository clinicRepo) {
-        this.passwordEncoder = passwordEncoder;
-        this.clinicRepo = clinicRepo;
-    }
 
     public Clinic registerClinic(Clinic clinic) {
         clinic.setCreateBy(clinic.getClinicName());
@@ -37,14 +41,23 @@ public class RegistrationService {
         }
 
         clinic.setClinicPassword(passwordEncoder.encode(clinic.getClinicPassword()));
-
+        Roles adminRole = roleRepository.findById("ADMIN")
+                .orElseGet(() -> {
+                    Roles newRole = new Roles();
+                    newRole.setRoleName("ADMIN");
+                    newRole.setRoleDescription("Clinic Administrator Role");
+                    return roleRepository.save(newRole);
+                });
+        Set<Roles> rolesSet = new HashSet<>();
+        rolesSet.add(adminRole);
+        clinic.setRoles(rolesSet);
         log.info("Clinic registered successfully: {}", clinic.getClinicEmail());
         return clinicRepo.save(clinic);
     }
 
     public RootPostResponse GetClinicInfo(ClinicContactRequest request){
         Clinic clinic = clinicRepo.findByClinicContact(request.getClinicContact());
-        ResponseData responseData = new ResponseData(
+        ResponseData responseData = ResponseData.forClinic(
                 clinic.getClinicEmail(),
                 clinic.getClinicContact(),
                 clinic.getClinicStatus().toString(),
@@ -59,7 +72,7 @@ public class RegistrationService {
                 clinic.getClinicLogo()
         );
 
-        ResponseIdentifier identifier = new ResponseIdentifier(
+        ResponseIdentifier identifier = ResponseIdentifier.forClinic(
                 clinic.getClinicId(),
                 clinic.getClinicCode(),
                 clinic.getClinicName()

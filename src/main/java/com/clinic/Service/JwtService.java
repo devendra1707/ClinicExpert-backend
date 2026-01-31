@@ -5,11 +5,17 @@ import com.clinic.Enums.ClinicStatus;
 import com.clinic.Exception.UsernameNotFoundException;
 import com.clinic.LookupResponse.*;
 import com.clinic.Model.Clinic;
+import com.clinic.Model.Doctor;
+import com.clinic.Model.Patient;
+import com.clinic.Model.Roles;
 import com.clinic.Repository.ClinicExpertRepository;
+import com.clinic.Repository.DoctorRepository;
+import com.clinic.Repository.PatientRepository;
 import com.clinic.Request.ForgetPasswordRequest;
 import com.clinic.Request.JwtRequest;
 import com.clinic.Request.ResetPasswordRequest;
 import com.clinic.Util.JwtUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -31,6 +37,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class JwtService implements UserDetailsService {
 
     private final ClinicExpertRepository clinicExpertRepository;
@@ -38,6 +45,8 @@ public class JwtService implements UserDetailsService {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
     private final EmailNotification emailNotification;
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
     @Value("${app.base-url}")
     private String baseUrl;
@@ -45,128 +54,213 @@ public class JwtService implements UserDetailsService {
     @Value("${app.frontend-url}")
     private String frontendUrl;
 
-    public JwtService(@Lazy ClinicExpertRepository clinicExpertRepository,
-                      @Lazy AuthenticationManager authenticationManager,
-                      @Lazy JwtUtil jwtUtil,
-                      @Lazy PasswordEncoder passwordEncoder,
-                      @Lazy EmailNotification emailNotification) {
-        this.clinicExpertRepository = clinicExpertRepository;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-        this.passwordEncoder = passwordEncoder;
-        this.emailNotification = emailNotification;
-    }
-
     public RootPostResponse createJwtToken(JwtRequest jwtRequest) {
         log.info("Creating JWT Token");
         String clinicEmail = jwtRequest.getClinicEmail();
         String clinicPassword = jwtRequest.getClinicPassword();
-        String clinicContact = jwtRequest.getClinicContact();
 
         if (clinicPassword == null || clinicPassword.isBlank()) {
             log.error("Password is missing");
             throw new BadCredentialsException("Password is required.");
         }
 
-        if ((clinicEmail == null || clinicEmail.isBlank()) &&
-                (clinicContact == null || clinicContact.isBlank())) {
+        if ((clinicEmail == null || clinicEmail.isBlank())) {
             log.error("Email and Contact both are missing");
             throw new UsernameNotFoundException("Email or Contact number is required.");
         }
 
-        Clinic clinic = loginUsingClinicEmailORContact(clinicEmail, clinicContact);
-
-        if (clinic == null) {
-            log.error("No clinic found with provided credentials");
+        validateLoginInput(clinicEmail, clinicPassword);
+        Object user = findUserByEmailOrContact(clinicEmail);
+        if (user == null) {
+            log.error("Authentication failed: User not found");
             throw new UsernameNotFoundException("Invalid email/contact or password.");
         }
+        return switch (user) {
+            case Clinic clinic -> handleClinicLogin(clinic, clinicPassword);
+            case Doctor doctor -> handleDoctorLogin(doctor, clinicPassword);
+            case Patient patient -> handlePatientLogin(patient, clinicPassword);
+            default -> {log.error("Unknown user type");
+                throw new IllegalStateException("Unknown user type found");
+            }
+        };
 
+    }
+
+    private void validateLoginInput(String email, String password) {
+        if (password == null || password.isBlank()) {
+            log.error("Password is missing");
+            throw new BadCredentialsException("Password is required.");
+        }
+
+        if ((email == null || email.isBlank())) {
+            log.error("Email and Contact both are missing");
+            throw new UsernameNotFoundException("Email or Contact number is required.");
+        }
+    }
+
+    private RootPostResponse handleClinicLogin(Clinic clinic, String password) {
         validateClinicStatus(clinic);
-        authenticate(clinic.getClinicEmail(), clinicPassword);
+        authenticate(clinic.getClinicEmail(), password);
 
-        UserDetails userDetails = loadUserByUsername(clinic.getClinicEmail());
-        String generateToken = jwtUtil.generateToken(userDetails);
+        String token = jwtUtil.generateToken(loadUserByUsername(clinic.getClinicEmail()));
+        String roleNames = clinic.getRoles().isEmpty() ? "ADMIN" : clinic.getRoles().iterator().next().getRoleName();
+        ResponseIdentifier identifier =
+                ResponseIdentifier.forClinic(
+                        clinic.getClinicId(),
+                        clinic.getClinicCode(),
+                        clinic.getClinicName(),
+                        token
+                );
 
-        ResponseData responseData = new ResponseData(
-                clinic.getClinicEmail(),
-                clinic.getClinicContact(),
-                clinic.getClinicStatus().toString(),
-                clinic.getClinicAddress(),
-                clinic.getClinicCity(),
-                clinic.getClinicState(),
-                clinic.getClinicPinCode(),
-                clinic.getClinicTimezone(),
-                clinic.getClinicOpeningTime(),
-                clinic.getClinicClosingTime(),
-                clinic.getClinicSubscriptionPlan(),
-                clinic.getClinicLogo()
+        ResponseData data = new ResponseData();
+        data.setRoleName(roleNames);
+        data.setClinic_email(clinic.getClinicEmail());
+        data.setClinic_contact(clinic.getClinicContact());
+        data.setClinic_status(clinic.getClinicStatus().toString());
+        data.setClinic_address(clinic.getClinicAddress());
+        data.setClinic_city(clinic.getClinicCity());
+        data.setClinic_state(clinic.getClinicState());
+        data.setClinic_pin_code(clinic.getClinicPinCode());
+        data.setClinic_time_zone(clinic.getClinicTimezone());
+        data.setClinicOpeningTime(clinic.getClinicOpeningTime());
+        data.setClinicClosingTime(clinic.getClinicClosingTime());
+        data.setClinicSubscriptionPlan(clinic.getClinicSubscriptionPlan());
+        data.setClinicLogo(clinic.getClinicLogo());
+
+        return new RootPostResponse(
+                identifier,
+                new ResponseDatas(data),
+                new ResponseStatus("200 OK", "Clinic login successful")
         );
+    }
 
-        ResponseIdentifier identifier = new ResponseIdentifier(
-                clinic.getClinicId(),
-                clinic.getClinicCode(),
-                clinic.getClinicName(),
-                generateToken
+    private RootPostResponse handleDoctorLogin(Doctor doctor, String password) {
+
+        UserDetails userDetails = loadUserByUsername(doctor.getDoctorEmail());
+        String token = jwtUtil.generateToken(userDetails);
+        String roleName = doctor.getRoles().isEmpty() ? "DOCTOR" : doctor.getRoles().iterator().next().getRoleName();
+        ResponseIdentifier identifier =
+                ResponseIdentifier.forDoctor(
+                        doctor.getDoctorId(),
+                        doctor.getFullName(),
+                        token
+                );
+
+        ResponseData responseData = ResponseData.forDoctor(
+                doctor.getDoctorEmail(),
+                doctor.getDoctorContact(),
+                doctor.getStatus().toString(),
+                doctor.getClinic().getClinicName(),
+                doctor.getDoctorSpecialization(),
+                doctor.getDoctorQualification(),
+                doctor.getDoctorExperience(),
+                doctor.getDoctorAvailableFrom(),
+                doctor.getDoctorAvailableTo()
         );
+        responseData.setRoleName(roleName);
 
-        ResponseDatas responseDatas = new ResponseDatas(responseData);
-        ResponseStatus status = new ResponseStatus("200 OK", "Login successful.");
+        log.info("Doctor login successful: {}", doctor.getDoctorEmail());
 
-        log.info("Login successful for clinic: {}", clinic.getClinicName());
-        return new RootPostResponse(identifier, responseDatas, status);
+        return new RootPostResponse(
+                identifier,
+                new ResponseDatas(responseData),
+                new ResponseStatus("200 OK", "Doctor login successful")
+        );
+    }
+
+    private RootPostResponse handlePatientLogin(Patient patient, String password) {
+
+        authenticate(patient.getPatientEmail(), password);
+
+        UserDetails userDetails = loadUserByUsername(patient.getPatientEmail());
+        String token = jwtUtil.generateToken(userDetails);
+        String roleName = patient.getRoles().isEmpty() ? "PATIENT" : patient.getRoles().iterator().next().getRoleName();
+        ResponseIdentifier identifier =
+                ResponseIdentifier.forPatient(
+                        patient.getPatientId(),
+                        patient.getFullName(),
+                        token
+                );
+
+        ResponseData responseData = ResponseData.forPatient(
+                patient.getPatientEmail(),
+                patient.getContactNumber(),
+                patient.getPatientStatus().toString(),
+                patient.getGender(),
+                patient.getBloodGroup(),
+                patient.getCity()
+        );
+        responseData.setRoleName(roleName);
+
+        log.info("Patient login successful: {}", patient.getPatientEmail());
+
+        return new RootPostResponse(
+                identifier,
+                new ResponseDatas(responseData),
+                new ResponseStatus("200 OK", "Patient login successful")
+        );
     }
 
     /**
      * FORGET PASSWORD - Step 1: Generate reset token and send email
      */
-    public RootPostResponse forgetPassword(ForgetPasswordRequest request) {
-        log.info("Forget password request received");
-
-        String clinicEmail = request.getClinicEmail();
-        String clinicContact = request.getClinicContact();
-
-        if ((clinicEmail == null || clinicEmail.isBlank()) &&
-                (clinicContact == null || clinicContact.isBlank())) {
-            throw new UsernameNotFoundException("Email or Contact number is required.");
-        }
-
-        Clinic clinic = loginUsingClinicEmailORContact(clinicEmail, clinicContact);
-
-        if (clinic == null) {
-            throw new UsernameNotFoundException("No account found with provided email/contact.");
-        }
-
-        // Generate reset token (valid for 15 minutes)
-        String resetToken = UUID.randomUUID().toString();
-        clinic.setResetToken(resetToken);
-        clinic.setResetTokenExpiry(LocalDateTime.now().plusMinutes(15));
-
-        // Save token to database
-        clinicExpertRepository.save(clinic);
-
-        // Create reset link
-        String resetLink = frontendUrl + "/reset-password?token=" + resetToken;
-
-        // Send email
-        String emailSubject = "Password Reset Request - Clinic Experts";
-        String emailBody = buildPasswordResetEmail(clinic.getClinicName(), resetLink);
-
-        try {
-            emailNotification.mailSender(emailSubject, emailBody, clinic.getClinicEmail());
-            log.info("Password reset email sent to: {}", clinic.getClinicEmail());
-        } catch (Exception e) {
-            log.error("Failed to send password reset email: {}", e.getMessage());
-            throw new RuntimeException("Failed to send password reset email. Please try again later.");
-        }
-
-        ResponseStatus status = new ResponseStatus(
-                "200 OK",
-                "Password reset link has been sent to your email: " + clinic.getClinicEmail()
-        );
-
-        log.info("Password reset token generated for: {}", clinic.getClinicEmail());
-        return new RootPostResponse(null, null, status);
-    }
+//    public RootPostResponse forgetPassword(ForgetPasswordRequest request) {
+//        log.info("Forget password request received");
+//
+//        String clinicEmail = request.getClinicEmail();
+//        String clinicContact = request.getClinicContact();
+//
+//        if ((clinicEmail == null || clinicEmail.isBlank()) &&
+//                (clinicContact == null || clinicContact.isBlank())) {
+//            throw new UsernameNotFoundException("Email or Contact number is required.");
+//        }
+//
+//        Object user = findUserByEmailOrContact(clinicEmail, clinicContact);
+//
+//        if (clinic == null) {
+//            throw new UsernameNotFoundException("No account found with provided email/contact.");
+//        }
+//
+//        // Generate reset token (valid for 15 minutes)
+//        String resetToken = UUID.randomUUID().toString();
+//        LocalDateTime expiry = LocalDateTime.now().plusMinutes(15);
+//
+//        switch (user) {
+//            case Clinic clinic -> {
+//                clinic.setResetToken(resetToken);
+//                clinic.setResetTokenExpiry(expiry);
+//                clinicExpertRepository.save(clinic);
+//
+//                sendResetEmail(clinic.getClinicEmail(), clinic.getClinicName(), resetToken);
+//            }
+//            case Doctor doctor -> {
+//                doctor.setResetToken(resetToken);
+//                doctor.setResetTokenExpiry(expiry);
+//                doctorRepository.save(doctor);
+//
+//                sendResetEmail(doctor.getDoctorEmail(), doctor.getFullName(), resetToken);
+//            }
+//            case Patient patient -> {
+//                patient.setResetToken(resetToken);
+//                patient.setResetTokenExpiry(expiry);
+//                patientRepository.save(patient);
+//
+//                sendResetEmail(patient.getPatientEmail(), patient.getFullName(), resetToken);
+//            }
+//            default -> {
+//                log.error("Unknown user type");
+//                throw new IllegalStateException("Unknown user type found");
+//            }
+//        }
+//
+//        ResponseStatus status = new ResponseStatus(
+//                "200 OK",
+//                "Password reset link has been sent to your email/contact."
+//        );
+//
+//        log.info("Password reset token generated for identifier: {}", email != null ? email : contact);
+//        return new RootPostResponse(null, null, status);
+//    }
 
     /**
      * RESET PASSWORD - Step 2: Validate token and update password
@@ -251,14 +345,45 @@ public class JwtService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Clinic clinic = clinicExpertRepository.findByClinicEmail(username);
-        if (clinic != null) {
-            log.info("Clinic found: {}", clinic.getClinicName());
-            return new User(clinic.getClinicEmail(), clinic.getClinicPassword(), getAuthorities(clinic));
-        } else {
-            log.error("Clinic not found with email: {}", username);
+        log.info("Loading user by username: {}", username);
+        Object user = findUserByEmailOrContact(username);
+
+        if (user == null) {
+            log.error("User not found with email/contact: {}", username);
             throw new UsernameNotFoundException("Invalid credentials.");
         }
+
+        // Use switch pattern matching to handle each user type
+        return switch (user) {
+            case Clinic clinic -> {
+                log.info("User found as Clinic: {}", clinic.getClinicName());
+                yield new org.springframework.security.core.userdetails.User(
+                        clinic.getClinicEmail(),
+                        clinic.getClinicPassword(),
+                        getAuthorities(clinic)
+                );
+            }
+            case Doctor doctor -> {
+                log.info("User found as Doctor: {}", doctor.getDoctorEmail());
+                yield new org.springframework.security.core.userdetails.User(
+                        doctor.getDoctorEmail(),
+                        doctor.getDoctorPassword(),
+                        new HashSet<>() // Or assign roles if available
+                );
+            }
+            case Patient patient -> {
+                log.info("User found as Patient: {}", patient.getPatientEmail());
+                yield new org.springframework.security.core.userdetails.User(
+                        patient.getPatientEmail(),
+                        patient.getPatientPassword(),
+                        new HashSet<>() // Or assign roles if available
+                );
+            }
+            default -> {
+                log.error("Unknown user type for username: {}", username);
+                throw new IllegalStateException("Unknown user type found");
+            }
+        };
     }
 
     public Set<SimpleGrantedAuthority> getAuthorities(Clinic clinic) {
@@ -283,28 +408,44 @@ public class JwtService implements UserDetailsService {
         }
     }
 
-    public Clinic loginUsingClinicEmailORContact(String clinicEmail, String clinicContact) {
-        Clinic clinic = null;
+    public Object findUserByEmailOrContact(String identifier) {
 
-        if (clinicEmail != null && !clinicEmail.isBlank()) {
-            clinic = clinicExpertRepository.findByClinicEmail(clinicEmail);
-            if (clinic != null) {
-                log.info("Clinic found by email");
-                return clinic;
-            }
+        if (identifier == null || identifier.isBlank()) {
+            log.warn("Login attempt with empty identifier");
+            return null;
         }
 
-        if (clinicContact != null && !clinicContact.isBlank()) {
-            clinic = clinicExpertRepository.findByClinicContact(clinicContact);
-            if (clinic != null) {
-                log.info("Clinic found by contact");
-                return clinic;
-            }
+        identifier = identifier.trim();
+        log.info("Searching for user with identifier: {}", identifier);
+
+        // ===== Clinic =====
+        Clinic clinic =
+                clinicExpertRepository.findByClinicEmailOrClinicContact(identifier,identifier);
+        if (clinic != null) {
+            log.info("Clinic found: {}", clinic.getClinicName());
+            return clinic;
         }
 
-        log.error("Clinic not found by email or contact");
+        // ===== Doctor =====
+        Doctor doctor =
+                doctorRepository.findByDoctorEmailOrDoctorContact(identifier,identifier);
+        if (doctor != null) {
+            log.info("Doctor found: {}", doctor.getDoctorContact());
+            return doctor;
+        }
+
+        // ===== Patient =====
+        Patient patient =
+                patientRepository.findByPatientEmailOrContactNumber(identifier,identifier);
+        if (patient != null) {
+            log.info("Patient found: {}", patient.getFullName());
+            return patient;
+        }
+
+        log.error("No user found in any table for identifier: {}", identifier);
         return null;
     }
+
 
     /**
      * Build HTML email for password reset
