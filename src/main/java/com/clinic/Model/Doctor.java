@@ -51,6 +51,9 @@ public class Doctor {
     @Column(name = "doctor_email")
     private String doctorEmail;
 
+    @Column(name = "doctor_password")
+    private String doctorPassword;
+
     @Column(name = "doctor_qualification")
     private String doctorQualification;
 
@@ -87,6 +90,7 @@ public class Doctor {
         System.out.println("===After Insert Data===");
     }
 
+    @Hidden
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "doctor_roles",

@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 @Slf4j
 public class ClinicRegistration {
 
@@ -24,7 +25,7 @@ public class ClinicRegistration {
     }
 
     @PostMapping("/getClinicInfo")
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     public RootPostResponse getClinicInformation(@RequestBody ClinicContactRequest clinicContact){
         return registrationService.GetClinicInfo(clinicContact);
     }

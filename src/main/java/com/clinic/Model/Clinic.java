@@ -104,6 +104,7 @@ public class Clinic {
     @Column(name = "reset_token")
     private String resetToken;
 
+    @Hidden
     @Column(name = "reset_token_expiry")
     private LocalDateTime resetTokenExpiry;
 
@@ -158,6 +159,7 @@ public class Clinic {
         System.out.println("===After Remove===");
     }
 
+    @Hidden
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "clinic_roles",
             joinColumns = @JoinColumn(name = "clinicId", referencedColumnName = "clinic_id"),
@@ -165,7 +167,7 @@ public class Clinic {
     )
     private Set<Roles> roles;
 
-
+    @Hidden
     @OneToMany(mappedBy = "clinic", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Doctor> doctors = new ArrayList<>();

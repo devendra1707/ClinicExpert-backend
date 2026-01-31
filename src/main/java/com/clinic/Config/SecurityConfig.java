@@ -60,10 +60,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         // Public endpoints - Authentication
                         .requestMatchers(
-                                "/authentication",
-                                "/registration",
-                                "/api/auth/**"
-                        ).permitAll()
+                                        "/api/auth/**",
+                                        "/api/registration",
+                                        "/api/patients/clinic/*/patients"
+                                ).permitAll()
 
                         // Swagger/OpenAPI endpoints - MUST be public
                         .requestMatchers(

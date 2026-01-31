@@ -9,8 +9,10 @@ import com.clinic.Repository.ClinicExpertRepository;
 import com.clinic.Repository.DoctorRepository;
 import com.clinic.Repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,6 +23,7 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final ClinicExpertRepository clinicExpertRepository;
     private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     public Doctor createDoctor(UUID clinicId, Doctor doctor){
@@ -36,11 +39,17 @@ public class DoctorService {
                     return roleRepository.save(newRole);
                 });
         doctor.setRoles(Set.of(doctorRole));
-
+        String password = doctor.getDoctorPassword();
+        String encodePassword = passwordEncoder.encode(password);
+        doctor.setDoctorPassword(encodePassword);
         return doctorRepository.save(doctor);
     }
 
     public Doctor getDoctorInfo(String doctorContact){
         return doctorRepository.findByDoctorContact(doctorContact);
+    }
+
+    public List<Doctor> getDoctorList(){
+        return doctorRepository.findAll();
     }
 }
