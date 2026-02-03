@@ -360,7 +360,7 @@ public class JwtService implements UserDetailsService {
                 yield new org.springframework.security.core.userdetails.User(
                         clinic.getClinicEmail(),
                         clinic.getClinicPassword(),
-                        getAuthorities(clinic)
+                        getAuthorities(clinic.getRoles())
                 );
             }
             case Doctor doctor -> {
@@ -368,7 +368,7 @@ public class JwtService implements UserDetailsService {
                 yield new org.springframework.security.core.userdetails.User(
                         doctor.getDoctorEmail(),
                         doctor.getDoctorPassword(),
-                        new HashSet<>() // Or assign roles if available
+                        getAuthorities(doctor.getRoles())
                 );
             }
             case Patient patient -> {
@@ -376,7 +376,7 @@ public class JwtService implements UserDetailsService {
                 yield new org.springframework.security.core.userdetails.User(
                         patient.getPatientEmail(),
                         patient.getPatientPassword(),
-                        new HashSet<>() // Or assign roles if available
+                        getAuthorities(patient.getRoles())
                 );
             }
             default -> {
@@ -386,12 +386,18 @@ public class JwtService implements UserDetailsService {
         };
     }
 
-    public Set<SimpleGrantedAuthority> getAuthorities(Clinic clinic) {
-        log.info("Fetching roles for clinic: {}", clinic.getClinicName());
+    public Set<SimpleGrantedAuthority> getAuthorities(Set<Roles> roles) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        clinic.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-        });
+        if (roles != null) {
+            roles.forEach(role -> {
+                String roleName = role.getRoleName();
+                // Spring Security requires "ROLE_" prefix
+                if (!roleName.startsWith("ROLE_")) {
+                    roleName = "ROLE_" + roleName;
+                }
+                authorities.add(new SimpleGrantedAuthority(roleName));
+            });
+        }
         return authorities;
     }
 

@@ -31,7 +31,7 @@ public class DoctorController {
     }
 
     @GetMapping("/doctor/list")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('DOCTOR')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('DOCTOR') or hasRole('PATIENT')")
     public List<Doctor> doctorList(){
         return doctorService.getDoctorList();
     }
