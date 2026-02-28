@@ -63,7 +63,7 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + VALIDATE_TOKEN * 10000))
+                .setExpiration(new Date(System.currentTimeMillis() + VALIDATE_TOKEN * 1000))
                 .signWith(getSingKey(),SignatureAlgorithm.HS512).compact();
     }
 

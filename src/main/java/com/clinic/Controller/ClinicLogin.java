@@ -32,7 +32,7 @@ public class ClinicLogin {
         log.info("Login request received for: {}", jwtRequest.getClinicEmail());
         System.out.println("This is the Login  : "+jwtRequest.getClinicEmail());
         RootPostResponse response = jwtService.createJwtToken(jwtRequest);
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
     }
 
 //    @PostMapping("/forget-password")
