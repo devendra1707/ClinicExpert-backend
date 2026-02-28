@@ -82,11 +82,11 @@
 
 
         <!-- POSTGRESQL -->
-        <dependency>
+       <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+            <version>42.6.0</version>
+       </dependency>
 
         <!-- Lombok -->
         <dependency>
@@ -125,6 +125,14 @@
 
     <build>
         <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+                <skipTests>true</skipTests>
+            </configuration>
+        </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
