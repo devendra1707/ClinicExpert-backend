@@ -37,7 +37,7 @@ public class SwaggerConfig {
                                 .url("https://www.apache.org/licenses/LICENSE-2.0.html")))
                 .servers(List.of(
                         new Server()
-                                .url("http://localhost:" + serverPort)
+                                .url("http://localhost:" + serverPort+"/clinic"	)
                                 .description("Local Development Server")
                 ))
                 .addSecurityItem(new SecurityRequirement()
